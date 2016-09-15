@@ -9,6 +9,8 @@
 /*
  * Atoms */
 @import "./atoms/Title.css";
+@import "./atoms/BlockList.css";
+@import "./atoms/BlockListItem.css";
 
 /*
  * Molecules */
