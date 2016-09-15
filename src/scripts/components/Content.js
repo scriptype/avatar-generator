@@ -1,4 +1,5 @@
 import React from 'react'
+import BlockList from '../modules/BlockList'
 
 export default React.createClass({
   propTypes: {
@@ -9,7 +10,9 @@ export default React.createClass({
     console.log('Content.props', this.props)
     return (
       <div className='content'>
-        Content
+        <BlockList
+          items={[]}
+          className='canvas-list' />
       </div>
     )
   }
