@@ -1,5 +1,17 @@
-@import './hello_world.css';
+/*
+ * Helpers */
+@import "./helpers.css";
 
-body {
-  font: normal 400 100%/1.6 helvetica, arial, sans-serif;
-}
+/*
+ * Generic base styling */
+@import "./base.css";
+
+/*
+ * Atoms */
+@import "./atoms/Title.css";
+
+/*
+ * Molecules */
+@import "./molecules/Main.css";
+@import "./molecules/Header.css";
+@import "./molecules/Content.css";

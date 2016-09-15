@@ -6,6 +6,7 @@ export default React.createClass({
   getInitialState() {
     return {
       parameters: {
+        quantity: 50,
         width: 160,
         height: 160,
         rotation: 0,
@@ -20,7 +21,7 @@ export default React.createClass({
           'magenta',
           'royalblue',
           'skyblue'
-        ] 
+        ]
       }
     }
   },
