@@ -8,7 +8,7 @@ export default React.createClass({
     colors: React.PropTypes.array.isRequired
   },
 
-  getRandomColor() {
+  getRandomColorset() {
     var colors = this.props.colors
     return colors[~~(Math.random() * colors.length)]
   },
@@ -16,8 +16,12 @@ export default React.createClass({
   componentDidMount() {
     var { width, height, rotation, colors } = this.props
     var ctx = this.refs.canvas.getContext('2d')
-    ctx.fillStyle = this.getRandomColor()
-    ctx.fillRect(0, 0, width, height)
+    var colors = this.getRandomColorset()
+    var colorWidth = width / colors.length
+    colors.forEach((color, i) => {
+      ctx.fillStyle = color
+      ctx.fillRect(colorWidth * i, 0, colorWidth * (i + 1), height)
+    })
   },
 
   render() {
