@@ -1,4 +1,5 @@
 import React from 'react'
+import FormControl from './FormControl'
 import Input from '../modules/Input'
 
 export default React.createClass({
@@ -26,35 +27,32 @@ export default React.createClass({
     return (
       <div className='parameters'>
 
-        <label>
-          Quantity:
+        <FormControl title='Quantity' className='parameters__row'>
           <Input
             type='number'
             value={quantity}
             min='1'
             isMini={true}
             onChange={e => onChange('quantity', +e.target.value)} />
-        </label>
+        </FormControl>
 
-        <label>
-          Size:
+        <FormControl title='Size' className='parameters__row'>
           <Input
             type='number'
             value={width}
             min='1'
             isMini={true}
             onChange={e => onChange('width', +e.target.value)} />
-          x
+          {' x '}
           <Input
             type='number'
             value={height}
             min='1'
             isMini={true}
             onChange={e => onChange('height', +e.target.value)} />
-        </label>
+        </FormControl>
 
-        <label>
-          Rotation (°):
+        <FormControl title='Rotation (°)' className='parameters__row'>
           <Input
             type='number'
             value={rotation1}
@@ -62,7 +60,7 @@ export default React.createClass({
             max='360'
             isMini={true}
             onChange={e => onChange('rotation1', +e.target.value)} />
-          ,
+          {' , '}
           <Input
             type='number'
             value={rotation2}
@@ -70,7 +68,7 @@ export default React.createClass({
             max='360'
             isMini={true}
             onChange={e => onChange('rotation2', +e.target.value)} />
-        </label>
+        </FormControl>
 
       </div>
     )
