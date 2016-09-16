@@ -10,18 +10,45 @@ export default React.createClass({
 
   getRandomColorset() {
     var colors = this.props.colors
-    return colors[~~(Math.random() * colors.length)]
+    var colorset = colors[~~(Math.random() * colors.length)]
+    return colorset.sort(c => Math.round(Math.random()))
+  },
+
+  getRandomPoint() {
+    var { width, height } = this.props
+    var xRange =  width / 3
+    var yRange = height / 3
+    return [
+      width / 3 + ~~(Math.random() * xRange),
+      height / 3 + ~~(Math.random() * yRange)
+    ]
   },
 
   componentDidMount() {
     var { width, height, rotation, colors } = this.props
     var ctx = this.refs.canvas.getContext('2d')
+
+    var [ X, Y ] = this.getRandomPoint()
+    ctx.save()
+    ctx.translate(X, Y)
+    ctx.rotate(rotation * Math.PI / 180)
+    ctx.translate(-(width / 2), -(height / 2))
+    var [ W, H ] = [ width * 2, height * 2 ]
+
+    var rectCoords = [
+      [ -W, -H, X + W, Y + W ],
+      [  X, -H, W,     Y + H ],
+      [ -W,  Y, X + W, H ],
+      [  X,  Y, W,     H ]
+    ]
+
     var colors = this.getRandomColorset()
-    var colorWidth = width / colors.length
     colors.forEach((color, i) => {
       ctx.fillStyle = color
-      ctx.fillRect(colorWidth * i, 0, colorWidth * (i + 1), height)
+      ctx.fillRect(...rectCoords[i])
     })
+
+    ctx.restore()
   },
 
   render() {
