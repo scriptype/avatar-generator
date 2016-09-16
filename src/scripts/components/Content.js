@@ -26,7 +26,6 @@ export default React.createClass({
   },
 
   render() {
-    console.log('Content.props', this.props)
     var items = this.generateItems()
     return (
       <div className='content'>

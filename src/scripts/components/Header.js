@@ -1,5 +1,6 @@
 import React from 'react'
 import Title from '../modules/Title'
+import Parameters from './Parameters'
 
 export default React.createClass({
   propTypes: {
@@ -8,12 +9,17 @@ export default React.createClass({
   },
 
   render() {
-    console.log('Header.props', this.props)
     return (
       <div className='header'>
+
         <Title className='header__title'>
           Avatar Generator
         </Title>
+
+        <Parameters
+          onChange={this.props.onChange}
+          {...this.props.parameters} />
+
       </div>
     )
   }

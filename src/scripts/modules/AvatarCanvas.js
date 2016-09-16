@@ -74,7 +74,7 @@ export default React.createClass({
       [  X,  Y, W,     H ]
     ]
 
-    this.shuffle(colors).forEach((color, i) => {
+    colors.forEach((color, i) => {
       ctx.fillStyle = color
       ctx.fillRect(...rectCoords[i])
     })
@@ -82,14 +82,38 @@ export default React.createClass({
     ctx.restore()
   },
 
-  componentDidMount() {
-    var colors = this.getRandomColorset()
+  reset() {
+    this.colors = this.shuffle(this.getRandomColorset())
     var [ X, Y ] = this.getRandomPoint()
-    this.drawRects([X, Y], colors, this.props.rotation1)
+    this.X = X
+    this.Y = Y
 
-    var RGBAColors = this.colorsetToRandomAlpha(colors)
+    this.RGBAColors = this.shuffle(this.colorsetToRandomAlpha(this.colors))
     var [ AX, AY ] = this.getAlternativePoint(X, Y)
-    this.drawRects([AX, AY], RGBAColors, this.props.rotation2)
+    this.AX = AX
+    this.AY = AY
+  },
+
+  update() {
+    this.refs.canvas.width = this.props.width
+    this.refs.canvas.height = this.props.height
+
+    this.drawRects([this.X, this.Y], this.colors, this.props.rotation1)
+    this.drawRects([this.AX, this.AY], this.RGBAColors, this.props.rotation2)
+  },
+
+  componentDidMount() {
+    this.reset()
+    requestAnimationFrame(this.update)
+  },
+
+  componentDidUpdate(prevProps) {
+    var isWidthChanged = prevProps.width !== this.props.width
+    var isHeightChanged = prevProps.height !== this.props.height
+    if (isWidthChanged || isHeightChanged) {
+      this.reset()
+    }
+    this.update()
   },
 
   render() {
@@ -97,9 +121,7 @@ export default React.createClass({
       <div className='avatar-canvas__wrapper'>
         <canvas
           className='avatar-canvas'
-          ref='canvas'
-          width={this.props.width}
-          height={this.props.height}>
+          ref='canvas'>
         </canvas>
       </div>
     )
