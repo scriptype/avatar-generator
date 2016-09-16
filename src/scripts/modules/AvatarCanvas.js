@@ -22,11 +22,6 @@ export default React.createClass({
     return this.monteCarloMinimum()
   },
 
-  getRandomColorset() {
-    var colors = this.props.colors
-    return colors[~~(Math.random() * colors.length)]
-  },
-
   colorsetToRandomAlpha(colorset) {
     return colorset.map(color => (
       'rgba(' + [
@@ -35,6 +30,11 @@ export default React.createClass({
           color.slice(5)
         ].map(e => parseInt(e, 16)).join() + ',' + this.monteCarloMinimum() + ')'
     ))
+  },
+
+  getRandomColorset() {
+    var colors = this.props.colors
+    return colors[~~(Math.random() * colors.length)]
   },
 
   getRandomPoint() {
@@ -95,16 +95,18 @@ export default React.createClass({
   },
 
   update() {
-    this.refs.canvas.width = this.props.width
-    this.refs.canvas.height = this.props.height
+    requestAnimationFrame(() => {
+      this.refs.canvas.width = this.props.width
+      this.refs.canvas.height = this.props.height
 
-    this.drawRects([this.X, this.Y], this.colors, this.props.rotation1)
-    this.drawRects([this.AX, this.AY], this.RGBAColors, this.props.rotation2)
+      this.drawRects([this.X, this.Y], this.colors, this.props.rotation1)
+      this.drawRects([this.AX, this.AY], this.RGBAColors, this.props.rotation2)
+    })
   },
 
   componentDidMount() {
     this.reset()
-    requestAnimationFrame(this.update)
+    this.update()
   },
 
   componentDidUpdate(prevProps) {
