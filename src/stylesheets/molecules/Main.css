@@ -1,0 +1,21 @@
+.main {
+    margin: 0 1em;
+}
+
+@media (min-width: 360px) {
+    .main {
+        margin: 0 5%;
+    }
+}
+
+@media (min-width: 640px) {
+    .main {
+        margin: 0 10%;
+    }
+}
+
+@media (min-width: 960px) {
+    .main {
+        margin: 0 20%;
+    }
+}

@@ -1,0 +1,33 @@
+.block-list {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+@media (min-width: 360px) {
+    .block-list {
+        margin: -.5em;
+    }
+
+    .block-list__item {
+        margin: .5em;
+    }
+}
+
+@media (min-width: 500px) {
+    .block-list {
+        justify-content: space-between;
+    }
+}
+
+@media (min-width: 640px) {
+    .block-list {
+        margin: -1em;
+    }
+
+    .block-list__item {
+        margin: 1em;
+    }
+}

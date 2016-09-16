@@ -7,8 +7,8 @@ export default React.createClass({
     return {
       parameters: {
         quantity: 50,
-        width: 160,
-        height: 160,
+        width: 100,
+        height: 100,
         rotation: -30,
         colors: [
           [ '#3c2e3d', '#fcad84', '#ecc7bf', '#8acbc7' ],

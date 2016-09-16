@@ -9,6 +9,7 @@
 /*
  * Atoms */
 @import "./atoms/Title.css";
+@import "./atoms/AvatarCanvas.css";
 @import "./atoms/BlockList.css";
 
 /*
