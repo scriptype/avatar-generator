@@ -12,7 +12,8 @@ export default React.createClass({
       quantity,
       width,
       height,
-      rotation,
+      rotation1,
+      rotation2,
       colors
     } = this.props.parameters
 
@@ -20,7 +21,7 @@ export default React.createClass({
       .join(' ')
       .split(' ')
       .map(e => (
-          <AvatarCanvas {...{ width, height, rotation, colors }} />
+          <AvatarCanvas {...{ width, height, rotation1, rotation2, colors }} />
       ))
   },
 
