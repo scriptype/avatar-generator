@@ -68,10 +68,10 @@ export default React.createClass({
     var [ W, H ] = [ width * 2, height * 2 ]
 
     var rectCoords = [
-      [ -W, -H, X + W, Y + W ],
-      [  X, -H, W,     Y + H ],
-      [ -W,  Y, X + W, H ],
-      [  X,  Y, W,     H ]
+      [ -W,      -H,      X + W + .3, Y + H + .3 ],
+      [  X,      -H,      W,          Y + H + .3 ],
+      [ -W,       Y - .3, X + W + .3, H ],
+      [  X - .3,  Y - .3, W,          H ]
     ]
 
     colors.forEach((color, i) => {
