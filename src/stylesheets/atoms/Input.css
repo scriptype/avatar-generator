@@ -1,0 +1,10 @@
+.input-field {
+    font-size: .8em;
+    padding: .25em .4em;
+    border: 1px solid #aaa;
+    border-radius: 2px;
+}
+
+.input-field--mini {
+    width: 3em;
+}

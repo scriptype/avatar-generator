@@ -9,8 +9,8 @@ export default React.createClass({
         quantity: 50,
         width: 100,
         height: 100,
-        rotation1: -30,
-        rotation2: -15,
+        rotation1: 330,
+        rotation2: 345,
         colors: [
           [ '#3c2e3d', '#fcad84', '#ecc7bf', '#8acbc7' ],
           [ '#183346', '#e8c77a', '#e2b49a', '#99abb9' ],

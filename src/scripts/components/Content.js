@@ -1,5 +1,5 @@
 import React from 'react'
-import BlockList from '../modules/BlockList'
+import BlockList from '../components/BlockList'
 import AvatarCanvas from '../modules/AvatarCanvas'
 
 export default React.createClass({

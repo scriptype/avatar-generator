@@ -1,5 +1,5 @@
 import React from 'react'
-import BlockListItem from './BlockListItem'
+import Item from './Item'
 
 export default React.createClass({
   propTypes: {
@@ -24,11 +24,11 @@ export default React.createClass({
     return (
       <ul className={classNames.join(' ')}>
         { this.props.items.map((item, index) => (
-            <BlockListItem
+            <Item
               key={index}
               className={this.props.className}>
               { item }
-            </BlockListItem>
+            </Item>
         )) }
       </ul>
     )

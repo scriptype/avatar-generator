@@ -1,4 +1,5 @@
 import React from 'react'
+import Input from '../modules/Input'
 
 export default React.createClass({
   propTypes: {
@@ -27,39 +28,47 @@ export default React.createClass({
 
         <label>
           Quantity:
-          <input
+          <Input
             type='number'
             value={quantity}
+            min='1'
+            isMini={true}
             onChange={e => onChange('quantity', +e.target.value)} />
         </label>
 
-        <br />
-
         <label>
           Size:
-          <input
+          <Input
             type='number'
             value={width}
+            min='1'
+            isMini={true}
             onChange={e => onChange('width', +e.target.value)} />
           x
-          <input
+          <Input
             type='number'
             value={height}
+            min='1'
+            isMini={true}
             onChange={e => onChange('height', +e.target.value)} />
         </label>
 
-        <br />
-
         <label>
           Rotation (°):
-          <input
+          <Input
             type='number'
             value={rotation1}
+            min='0'
+            max='360'
+            isMini={true}
             onChange={e => onChange('rotation1', +e.target.value)} />
           ,
-          <input
+          <Input
             type='number'
             value={rotation2}
+            min='0'
+            max='360'
+            isMini={true}
             onChange={e => onChange('rotation2', +e.target.value)} />
         </label>
 
