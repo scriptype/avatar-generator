@@ -53,7 +53,7 @@ export default React.createClass({
   },
 
   clickOutsideHandler(event) {
-    if (!this.isElementOfDropDown(event.target)) {
+    if (this.state.isContentVisible && !this.isElementOfDropDown(event.target)) {
       this.makeContentLeaveView()
     }
   },
