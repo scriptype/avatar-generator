@@ -1,6 +1,8 @@
 import React from 'react'
 import FormControl from './FormControl'
+import DropDown from './DropDown'
 import Input from '../modules/Input'
+import ColorSet from '../modules/ColorSet'
 
 export default React.createClass({
   propTypes: {
@@ -13,6 +15,11 @@ export default React.createClass({
     colors: React.PropTypes.array.isRequired
   },
 
+  onChangeColor(colorSetIndex, value) {
+    var { onChange, colors } = this.props
+    this.props.onChange('colors', Object.assign([], colors, { [colorSetIndex]: value }))
+  },
+
   render() {
     var {
       onChange,
@@ -23,6 +30,13 @@ export default React.createClass({
       rotation2,
       colors
     } = this.props
+
+    var colorList = colors.map((colorSet, index) => (
+        <ColorSet
+          colors={colorSet}
+          key={'colorset-' + index}
+          onChange={value => this.onChangeColor(index, value)} />
+    ))
 
     return (
       <div className='parameters'>
@@ -68,6 +82,14 @@ export default React.createClass({
             max='360'
             isMini={true}
             onChange={e => onChange('rotation2', +e.target.value)} />
+        </FormControl>
+
+        <FormControl title='Colors' className='parameters__row'>
+          <DropDown
+            title1='Expand color list'
+            title2='Close'
+            className='color-dropdown'
+            items={colorList} />
         </FormControl>
 
       </div>

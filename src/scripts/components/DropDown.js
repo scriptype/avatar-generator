@@ -1,9 +1,9 @@
 import React from 'react'
-import Item from './Item'
 
 export default React.createClass({
   propTypes: {
-    title: React.PropTypes.string,
+    title1: React.PropTypes.string,
+    title2: React.PropTypes.string,
     items: React.PropTypes.array,
     className: React.PropTypes.string
   },
@@ -55,7 +55,7 @@ export default React.createClass({
   },
 
   render() {
-    var { title, items, className } = this.props
+    var { title1, title2, items, className } = this.props
     var { isContentVisible } = this.state
     var cx = this.getClassName
 
@@ -65,15 +65,17 @@ export default React.createClass({
         <button
           className={cx('__handle') + ` ${isContentVisible ? cx('__handle--active') : ''}`}
           onClick={this.toggleContent}>
-          { title || 'Click to expand menu' }
+          { !isContentVisible ?
+            (title1 || 'Click to expand menu') :
+            (title2 || 'Close menu') }
         </button>
 
         <div className={cx('__content') + (!isContentVisible ? ' hidden' : '')}>
           <ul className={cx('__list')}>
             { items.map((item, index) => (
-                <Item key={index} className={cx('__item')}>
+                <li key={'dropdown-item-' + index} className={cx('__item')}>
                   { item }
-                </Item>
+                </li>
             )) }
           </ul>
         </div>

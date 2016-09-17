@@ -5,3 +5,7 @@
 .parameters__row-inner {
     font-family: monospace
 }
+
+.parameters .color-dropdown {
+    font-family: helvetica, arial, sans-serif;
+}
