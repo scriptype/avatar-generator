@@ -4,16 +4,14 @@
     width: 16px;
     height: 16px;
     text-indent: -99999px;
-    color: #f33;
+    color: #666;
     background: none;
-    border: 1px solid;
-    border-radius: 100%;
+    border: none;
     cursor: pointer;
 }
 
 .remove-icon:hover {
-    background: #f33;
-    color: #fff;
+    background: #ddd;
 }
 
 .remove-icon::before,
@@ -23,7 +21,7 @@
     top: 50%;
     left: 50%;
     width: 1px;
-    height: 70%;
+    height: 50%;
     background: currentColor;
 }
 
