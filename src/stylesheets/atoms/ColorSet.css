@@ -1,0 +1,14 @@
+.colorset {}
+
+.colorset__item {
+    width: 36px;
+    height: 15px;
+    padding: 0;
+    border: none;
+    background: none;
+    cursor: pointer;
+}
+
+.colorset__item:hover {
+    transform: scale(1, 1.5)
+}
