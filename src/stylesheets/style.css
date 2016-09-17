@@ -15,10 +15,16 @@
 
 /*
  * Molecules */
-@import "./molecules/Main.css";
-@import "./molecules/Header.css";
-@import "./molecules/Content.css";
 @import "./molecules/BlockList.css";
 @import "./molecules/DropDown.css";
 @import "./molecules/FormControl.css";
-@import "./molecules/Parameters.css";
+
+/*
+ * Organisms */
+@import "./organisms/Parameters.css";
+@import "./organisms/Header.css";
+@import "./organisms/Content.css";
+
+/*
+ * Templates*/
+@import "./templates/Main.css";
