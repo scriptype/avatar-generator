@@ -16,7 +16,7 @@ export default React.createClass({
 
   shouldComponentUpdate(nextProps) {
     return (
-      this.props.colors.some(c => nextProps.colors.indexOf(c) < 0) ||
+      this.props.colors.some((c, i) => nextProps.colors[i] !== c) ||
       this.props.isEnteringView !== nextProps.isEnteringView ||
       this.props.isLeavingView !== nextProps.isLeavingView
     )
