@@ -35,6 +35,13 @@
     border: 1px solid #bbb;
     border-top: none;
     background: #eee;
+    transition: all .2s;
+}
+
+.dropdown__content--is-entering-view,
+.dropdown__content--is-leaving-view {
+    opacity: 0;
+    transform: scale(.33) translate3d(0, -50%, 0);
 }
 
 .dropdown__list {

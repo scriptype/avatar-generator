@@ -10,9 +10,13 @@ export default React.createClass({
     className: React.PropTypes.string
   },
 
+  CONTENT_ENTER_LEAVE: 200,
+
   getInitialState() {
     return {
-      isContentVisible: false
+      isContentVisible: false,
+      isContentEnteringView: false,
+      isContentLeavingView: false
     }
   },
 
@@ -29,7 +33,14 @@ export default React.createClass({
   clickOutsideHandler(event) {
     if (!this.isElementOfDropDown(event.target)) {
       this.setState({
-        isContentVisible: false
+        isContentLeavingView: true
+      }, () => {
+        setTimeout(() => {
+          this.setState({
+            isContentLeavingView: false,
+            isContentVisible: false
+          })
+        }, this.CONTENT_ENTER_LEAVE)
       })
     }
   },
@@ -43,9 +54,28 @@ export default React.createClass({
   },
 
   toggleContent() {
-    this.setState({
-      isContentVisible: !this.state.isContentVisible
-    })
+    var { isContentVisible } = this.state
+
+    if (isContentVisible) {
+      this.setState({ isContentLeavingView: true }, () => {
+        setTimeout(() => {
+          this.setState({
+            isContentLeavingView: false,
+            isContentVisible: false
+          })
+        }, this.CONTENT_ENTER_LEAVE)
+      })
+
+    } else {
+      this.setState({
+        isContentEnteringView: true,
+        isContentVisible: true
+      }, () => {
+        setTimeout(() => {
+          this.setState({ isContentEnteringView: false })
+        }, this.CONTENT_ENTER_LEAVE)
+      })
+    }
   },
 
   getClassName(suffix) {
@@ -63,9 +93,18 @@ export default React.createClass({
       itemDecorator, listDecorator
     } = this.props
 
-    var { isContentVisible } = this.state
+    var {
+      isContentVisible,
+      isContentEnteringView,
+      isContentLeavingView
+    } = this.state
 
     var cx = this.getClassName
+
+    var contentMods = []
+    if (isContentEnteringView) { contentMods.push('--is-entering-view') }
+    if (isContentLeavingView) { contentMods.push('--is-leaving-view') }
+    var contentModifiers = ' ' + contentMods.map(m => 'dropdown__content' + m).join(' ') + ' '
 
     return (
       <div className={cx()} ref='container'>
@@ -79,7 +118,7 @@ export default React.createClass({
             (title2 || 'Close menu') }
         </button>
 
-        <div className={cx('__content') + (!isContentVisible ? ' hidden' : '')}>
+        <div className={cx('__content') + contentModifiers + (!isContentVisible ? ' hidden' : '')}>
           <ul className={cx('__list')}>
             { listDecorator && (
               <li key={'dropdown-decorator'} className={cx('__item')}>
