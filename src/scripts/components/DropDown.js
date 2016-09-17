@@ -30,52 +30,56 @@ export default React.createClass({
     return this.isElementOfDropDown(parentNode)
   },
 
+  makeContentLeaveView() {
+    this.setState({ isContentLeavingView: true }, () => {
+      setTimeout(() => {
+        this.setState({
+          isContentLeavingView: false,
+          isContentVisible: false
+        })
+      }, this.CONTENT_ENTER_LEAVE)
+    })
+  },
+
+  makeContentEnterView() {
+    this.setState({
+      isContentEnteringView: true,
+      isContentVisible: true
+    }, () => {
+      setTimeout(() => {
+        this.setState({ isContentEnteringView: false })
+      }, this.CONTENT_ENTER_LEAVE)
+    })
+  },
+
   clickOutsideHandler(event) {
     if (!this.isElementOfDropDown(event.target)) {
-      this.setState({
-        isContentLeavingView: true
-      }, () => {
-        setTimeout(() => {
-          this.setState({
-            isContentLeavingView: false,
-            isContentVisible: false
-          })
-        }, this.CONTENT_ENTER_LEAVE)
-      })
+      this.makeContentLeaveView()
+    }
+  },
+
+  pressESCHandler(event) {
+    if (event.keyCode === 27 || event.which === 27) {
+      this.makeContentLeaveView()
+    }
+  },
+
+  toggleContent() {
+    if (this.state.isContentVisible) {
+      this.makeContentLeaveView()
+    } else {
+      this.makeContentEnterView()
     }
   },
 
   componentDidMount() {
     document.body.addEventListener('click', this.clickOutsideHandler)
+    document.body.addEventListener('keydown', this.pressESCHandler)
   },
 
   componentWillUnmount() {
     document.body.removeEventListener('click', this.clickOutsideHandler)
-  },
-
-  toggleContent() {
-    var { isContentVisible } = this.state
-
-    if (isContentVisible) {
-      this.setState({ isContentLeavingView: true }, () => {
-        setTimeout(() => {
-          this.setState({
-            isContentLeavingView: false,
-            isContentVisible: false
-          })
-        }, this.CONTENT_ENTER_LEAVE)
-      })
-
-    } else {
-      this.setState({
-        isContentEnteringView: true,
-        isContentVisible: true
-      }, () => {
-        setTimeout(() => {
-          this.setState({ isContentEnteringView: false })
-        }, this.CONTENT_ENTER_LEAVE)
-      })
-    }
+    document.body.removeEventListener('keydown', this.pressESCHandler)
   },
 
   getClassName(suffix) {
