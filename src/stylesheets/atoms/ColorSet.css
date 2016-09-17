@@ -1,5 +1,19 @@
 .colorset {
     display: inline-block;
+    transition: all .2s;
+}
+
+.colorset--is-entering-view {
+    height: 0;
+    overflow: hidden;
+    opacity: 0;
+    transform: scale(.1);
+    transition: none;
+}
+
+.colorset--is-leaving-view {
+    opacity: 0;
+    transform: scale(.5);
 }
 
 .colorset__item {

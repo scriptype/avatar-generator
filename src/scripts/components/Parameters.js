@@ -16,6 +16,15 @@ export default React.createClass({
     colors: React.PropTypes.array.isRequired
   },
 
+  COLOR_ENTER_LEAVE: 200,
+
+  getInitialState() {
+    return {
+      isAddingNewColor: false,
+      isRemovingColor: false
+    }
+  },
+
   onChangeColorSet(colorSetIndex, value) {
     var { onChange, colors } = this.props
     onChange('colors', Object.assign([], colors, { [colorSetIndex]: value }))
@@ -25,13 +34,29 @@ export default React.createClass({
     var { onChange, colors } = this.props
     var leftPart = colors.slice(0, colorSetIndex)
     var rightPart = colors.slice(colorSetIndex + 1)
-    onChange('colors', leftPart.concat(rightPart))
+    this.setState({
+      isRemovingColor: true,
+      removingColorIndex: colorSetIndex
+    }, () => {
+      setTimeout(() => {
+        onChange('colors', leftPart.concat(rightPart))
+        this.setState({
+          isRemovingColor: false,
+          removingColorIndex: -1
+        })
+      }, this.COLOR_ENTER_LEAVE)
+    })
   },
 
   onAddColorSet() {
     var { onChange, colors } = this.props
     var newColor = ['#ffffff', '#ffffff', '#ffffff', '#ffffff']
-    onChange('colors', [newColor].concat(colors))
+    this.setState({ isAddingNewColor: true }, () => {
+      onChange('colors', [newColor].concat(colors))
+      setTimeout(() => {
+        this.setState({ isAddingNewColor: false })
+      })
+    })
   },
 
   render() {
@@ -45,10 +70,17 @@ export default React.createClass({
       colors
     } = this.props
 
+    var {
+      isAddingNewColor,
+      isRemovingColor,
+      removingColorIndex
+    } = this.state
+
     var colorList = colors.map((colorSet, index) => (
         <ColorSet
+          isEnteringView={isAddingNewColor && index === 0}
+          isLeavingView={isRemovingColor && index === removingColorIndex}
           colors={colorSet}
-          key={'colorset-' + index}
           onChange={value => this.onChangeColorSet(index, value)} />
     ))
 
