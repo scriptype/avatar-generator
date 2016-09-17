@@ -5,6 +5,7 @@ export default React.createClass({
     title1: React.PropTypes.string,
     title2: React.PropTypes.string,
     items: React.PropTypes.array,
+    itemDecorator: React.PropTypes.func,
     className: React.PropTypes.string
   },
 
@@ -55,7 +56,7 @@ export default React.createClass({
   },
 
   render() {
-    var { title1, title2, items, className } = this.props
+    var { title1, title2, items, itemDecorator, className } = this.props
     var { isContentVisible } = this.state
     var cx = this.getClassName
 
@@ -63,6 +64,7 @@ export default React.createClass({
       <div className={cx()} ref='container'>
 
         <button
+          type="button"
           className={cx('__handle') + ` ${isContentVisible ? cx('__handle--active') : ''}`}
           onClick={this.toggleContent}>
           { !isContentVisible ?
@@ -75,6 +77,7 @@ export default React.createClass({
             { items.map((item, index) => (
                 <li key={'dropdown-item-' + index} className={cx('__item')}>
                   { item }
+                  { itemDecorator && itemDecorator(item, index) }
                 </li>
             )) }
           </ul>

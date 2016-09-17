@@ -3,6 +3,7 @@ import FormControl from './FormControl'
 import DropDown from './DropDown'
 import Input from '../modules/Input'
 import ColorSet from '../modules/ColorSet'
+import RemoveIcon from '../modules/RemoveIcon'
 
 export default React.createClass({
   propTypes: {
@@ -15,9 +16,17 @@ export default React.createClass({
     colors: React.PropTypes.array.isRequired
   },
 
-  onChangeColor(colorSetIndex, value) {
+  onChangeColorSet(colorSetIndex, value) {
     var { onChange, colors } = this.props
-    this.props.onChange('colors', Object.assign([], colors, { [colorSetIndex]: value }))
+    onChange('colors', Object.assign([], colors, { [colorSetIndex]: value }))
+  },
+
+  onRemoveColorSet(colorSetIndex) {
+    console.log('onRemoveColorSet', colorSetIndex)
+    var { onChange, colors } = this.props
+    var leftPart = colors.slice(0, colorSetIndex)
+    var rightPart = colors.slice(colorSetIndex + 1)
+    onChange('colors', leftPart.concat(rightPart))
   },
 
   render() {
@@ -35,8 +44,16 @@ export default React.createClass({
         <ColorSet
           colors={colorSet}
           key={'colorset-' + index}
-          onChange={value => this.onChangeColor(index, value)} />
+          onChange={value => this.onChangeColorSet(index, value)} />
     ))
+
+    var colorListItemDecorator = (item, index) => {
+      return (
+          <RemoveIcon
+            className='remove-color-icon'
+            onClick={e => this.onRemoveColorSet(index)} />
+      )
+    }
 
     return (
       <div className='parameters'>
@@ -89,7 +106,8 @@ export default React.createClass({
             title1='Expand color list'
             title2='Close'
             className='color-dropdown'
-            items={colorList} />
+            items={colorList}
+            itemDecorator={colorListItemDecorator} />
         </FormControl>
 
       </div>

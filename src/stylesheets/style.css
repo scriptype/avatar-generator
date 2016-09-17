@@ -12,6 +12,7 @@
 @import "./atoms/AvatarCanvas.css";
 @import "./atoms/ColorSet.css";
 @import "./atoms/Input.css";
+@import "./atoms/RemoveIcon.css";
 
 /*
  * Molecules */
