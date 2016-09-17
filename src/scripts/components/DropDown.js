@@ -6,6 +6,7 @@ export default React.createClass({
     title2: React.PropTypes.string,
     items: React.PropTypes.array,
     itemDecorator: React.PropTypes.func,
+    listDecorator: React.PropTypes.func,
     className: React.PropTypes.string
   },
 
@@ -56,8 +57,14 @@ export default React.createClass({
   },
 
   render() {
-    var { title1, title2, items, itemDecorator, className } = this.props
+    var {
+      title1, title2,
+      className, items,
+      itemDecorator, listDecorator
+    } = this.props
+
     var { isContentVisible } = this.state
+
     var cx = this.getClassName
 
     return (
@@ -74,6 +81,11 @@ export default React.createClass({
 
         <div className={cx('__content') + (!isContentVisible ? ' hidden' : '')}>
           <ul className={cx('__list')}>
+            { listDecorator && (
+              <li key={'dropdown-decorator'} className={cx('__item')}>
+                { listDecorator() }
+              </li>
+            ) }
             { items.map((item, index) => (
                 <li key={'dropdown-item-' + index} className={cx('__item')}>
                   { item }

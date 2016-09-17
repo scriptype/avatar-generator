@@ -19,3 +19,23 @@
 .parameters .remove-color-icon {
     margin-top: 4px;
 }
+
+.parameters .add-color-row {
+    margin: 0;
+    padding: .25em 1em;
+    width: 100%;
+    font-size: .8em;
+    text-align: center;
+    border: 1px solid #111;
+    border-radius: 2px;
+    background: linear-gradient(to bottom, #16f, #05e);
+    color: #fff;
+}
+
+.parameters .add-color-row:hover {
+    background: linear-gradient(to bottom, #27f, #16f);
+}
+
+.parameters .add-color-row:active {
+    background: linear-gradient(to bottom, #05e, #16f);
+}

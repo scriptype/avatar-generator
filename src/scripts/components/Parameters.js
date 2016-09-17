@@ -22,11 +22,16 @@ export default React.createClass({
   },
 
   onRemoveColorSet(colorSetIndex) {
-    console.log('onRemoveColorSet', colorSetIndex)
     var { onChange, colors } = this.props
     var leftPart = colors.slice(0, colorSetIndex)
     var rightPart = colors.slice(colorSetIndex + 1)
     onChange('colors', leftPart.concat(rightPart))
+  },
+
+  onAddColorSet() {
+    var { onChange, colors } = this.props
+    var newColor = ['#ffffff', '#ffffff', '#ffffff', '#ffffff']
+    onChange('colors', [newColor].concat(colors))
   },
 
   render() {
@@ -52,6 +57,17 @@ export default React.createClass({
           <RemoveIcon
             className='remove-color-icon'
             onClick={e => this.onRemoveColorSet(index)} />
+      )
+    }
+
+    var colorListDecorator = () => {
+      return (
+          <button
+            type="button"
+            className='add-color-row'
+            onClick={this.onAddColorSet}>
+            Add new colorset
+          </button>
       )
     }
 
@@ -107,7 +123,8 @@ export default React.createClass({
             title2='Close'
             className='color-dropdown'
             items={colorList}
-            itemDecorator={colorListItemDecorator} />
+            itemDecorator={colorListItemDecorator}
+            listDecorator={colorListDecorator} />
         </FormControl>
 
       </div>
