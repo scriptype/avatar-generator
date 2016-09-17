@@ -99,7 +99,7 @@ export default React.createClass({
             onChange={e => onChange('height', +e.target.value)} />
         </FormControl>
 
-        <FormControl title='Rotation (°)' className='parameters__row'>
+        <FormControl title='Rotation (deg)' className='parameters__row'>
           <Input
             type='number'
             value={rotation1}
