@@ -44,12 +44,14 @@ html:
 	@make replace_path \
 		SCRIPT_FILE=$(JS_OUTPUT) \
 		STYLE_FILE=$(CSS_INPUT) \
+		ASSET_PATH=$(DIST) \
 		LIVE_RELOAD='true'
 
 post_html:
 	@make replace_path \
 		SCRIPT_FILE=$(PROD_JS_PATH) \
 		STYLE_FILE=$(PROD_CSS_PATH) \
+		ASSET_PATH=. \
 		LIVE_RELOAD='false'
 	@echo "Minifying markup..."
 	@$(BIN)/html-minifier \
@@ -118,6 +120,7 @@ replace_path:
 	  Handlebars.templates['index.html']({ \
 	    SCRIPT_FILE: '$(SCRIPT_FILE)', \
 	    STYLE_FILE: '$(STYLE_FILE)', \
+	    ASSET_PATH: '$(ASSET_PATH)', \
 	    LIVE_RELOAD: $(LIVE_RELOAD) \
 	  }) \
 	" > $(HTML_OUTPUT)

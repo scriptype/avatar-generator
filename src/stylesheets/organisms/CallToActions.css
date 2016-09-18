@@ -20,6 +20,6 @@
         justify-content: flex-start;
     }
     .call-to-actions__action:first-child {
-        margin-right: 1.1em;
+        margin-right: 1em;
     }
 }
