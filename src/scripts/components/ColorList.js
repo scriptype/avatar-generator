@@ -71,7 +71,7 @@ export default React.createClass({
     ))
 
     var itemDecorator = (item, index) => {
-      return (
+      return colors.length > 1 && (
           <RemoveIcon
             className='remove-color-icon'
             onClick={e => this.onRemoveColorSet(index)} />
