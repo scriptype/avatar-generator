@@ -10,6 +10,10 @@ export default React.createClass({
     shouldRegenerate: React.PropTypes.bool.isRequired
   },
 
+  contextTypes: {
+    dispatcher: React.PropTypes.object.isRequired
+  },
+
   shuffle(arr) {
     return arr.sort(c => Math.round(Math.random()))
   },
@@ -105,9 +109,19 @@ export default React.createClass({
     })
   },
 
+  emitImageData() {
+    var dataUrl = this.refs.canvas.toDataURL()
+    this.context.dispatcher.emitEvent('file-ready', [dataUrl])
+  },
+
   componentDidMount() {
     this.reset()
     this.update()
+    this.context.dispatcher.addListener('download-all', this.emitImageData)
+  },
+
+  componentWillUnmount() {
+    this.context.dispatcher.removeListener('download-all', this.emitImageData)
   },
 
   componentDidUpdate(prevProps) {

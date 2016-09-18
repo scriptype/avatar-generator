@@ -23,7 +23,8 @@ export default React.createClass({
           {...this.props.parameters} />
 
         <CallToActions
-          onRegenerate={this.props.onRegenerate} />
+          onRegenerate={this.props.onRegenerate}
+          parameters={this.props.parameters} />
 
       </div>
     )

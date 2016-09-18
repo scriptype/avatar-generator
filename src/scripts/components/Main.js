@@ -1,8 +1,19 @@
 import React from 'react'
 import Header from './Header'
 import Content from './Content'
+import EventEmitter from 'wolfy87-eventemitter'
+
+var dispatcher = new EventEmitter()
 
 export default React.createClass({
+  childContextTypes: {
+    dispatcher: React.PropTypes.object
+  },
+
+  getChildContext() {
+    return { dispatcher }
+  },
+
   getInitialState() {
     return {
       parameters: {
