@@ -4,24 +4,33 @@ import AvatarCanvas from '../modules/AvatarCanvas'
 
 export default React.createClass({
   propTypes: {
-    parameters: React.PropTypes.object.isRequired
+    parameters: React.PropTypes.object.isRequired,
+    shouldRegenerate: React.PropTypes.bool.isRequired
   },
 
   generateItems() {
     var {
-      quantity,
-      width,
-      height,
-      rotation1,
-      rotation2,
-      colors
-    } = this.props.parameters
+      parameters: {
+        quantity,
+        width,
+        height,
+        rotation1,
+        rotation2,
+        colors
+      },
+      shouldRegenerate
+    } = this.props
 
     return new Array(quantity)
       .join(' ')
       .split(' ')
       .map(e => (
-          <AvatarCanvas {...{ width, height, rotation1, rotation2, colors }} />
+          <AvatarCanvas {...{
+            width, height,
+            rotation1, rotation2,
+            colors,
+            shouldRegenerate
+          }} />
       ))
   },
 

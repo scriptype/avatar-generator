@@ -1,0 +1,25 @@
+.call-to-actions {
+    display: flex;
+}
+
+@media (max-width: 340px) {
+    .call-to-actions {
+        flex-direction: column;
+    }
+    .call-to-actions__action:first-child {
+        margin-bottom: 1em;
+    }
+    .call-to-actions__button {
+        width: 100%;
+    }
+}
+
+@media (min-width: 341px) {
+    .call-to-actions {
+        flex-direction: row;
+        justify-content: flex-start;
+    }
+    .call-to-actions__action:first-child {
+        margin-right: 1em;
+    }
+}

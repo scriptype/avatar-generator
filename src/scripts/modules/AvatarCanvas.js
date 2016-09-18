@@ -6,7 +6,8 @@ export default React.createClass({
     height: React.PropTypes.number.isRequired,
     rotation1: React.PropTypes.number.isRequired,
     rotation2: React.PropTypes.number.isRequired,
-    colors: React.PropTypes.array.isRequired
+    colors: React.PropTypes.array.isRequired,
+    shouldRegenerate: React.PropTypes.bool.isRequired
   },
 
   shuffle(arr) {
@@ -112,7 +113,8 @@ export default React.createClass({
   componentDidUpdate(prevProps) {
     var isWidthChanged = prevProps.width !== this.props.width
     var isHeightChanged = prevProps.height !== this.props.height
-    if (isWidthChanged || isHeightChanged) {
+    var { shouldRegenerate } = this.props
+    if (isWidthChanged || isHeightChanged || shouldRegenerate) {
       this.reset()
     }
     this.update()

@@ -28,7 +28,8 @@ export default React.createClass({
           [ '#2d2d33', '#d4d4d1', '#fefefe', '#385098' ],
           [ '#000000', '#ff534b', '#021542', '#0241e2' ]
         ]
-      }
+      },
+      shouldRegenerate: false
     }
   },
 
@@ -40,16 +41,24 @@ export default React.createClass({
     })
   },
 
+  onRegenerate() {
+    this.setState({ shouldRegenerate: true }, () => {
+      this.setState({ shouldRegenerate: false })
+    })
+  },
+
   render() {
     return (
       <div className='main'>
 
         <Header
           onChange={this.onChangeParameter}
+          onRegenerate={this.onRegenerate}
           parameters={this.state.parameters} />
 
         <Content
-          parameters={this.state.parameters} />
+          parameters={this.state.parameters}
+          shouldRegenerate={this.state.shouldRegenerate} />
 
       </div>
     )
