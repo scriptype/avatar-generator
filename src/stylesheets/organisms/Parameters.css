@@ -5,21 +5,3 @@
 .parameters__row-inner {
     font-family: monospace
 }
-
-.parameters .color-dropdown {
-    font-family: helvetica, arial, sans-serif;
-}
-
-.parameters .color-dropdown__item {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.parameters .remove-color-icon {
-    margin-top: 4px;
-}
-
-.parameters .add-color-row {
-    width: 100%;
-}

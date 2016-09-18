@@ -24,9 +24,10 @@
 /*
  * Organisms */
 @import "./organisms/Header.css";
-@import "./organisms/Content.css";
 @import "./organisms/Parameters.css";
+@import "./organisms/ColorList.css";
 @import "./organisms/CallToActions.css";
+@import "./organisms/Content.css";
 
 /*
  * Templates*/

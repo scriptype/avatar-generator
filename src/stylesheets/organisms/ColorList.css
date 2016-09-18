@@ -1,0 +1,17 @@
+.color-list {
+    font-family: helvetica, arial, sans-serif;
+}
+
+.color-list__item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.color-list .remove-color-icon {
+    margin-top: 4px;
+}
+
+.color-list .add-color-row {
+    width: 100%;
+}
