@@ -1,0 +1,32 @@
+.button {
+    padding: .25em 1em;
+    border: 1px solid #bbb;
+    border-radius: 2px;
+    background: linear-gradient(to bottom, #eee, #ddd);
+}
+
+.button:hover {
+    background: linear-gradient(to bottom, #f5f5f5, #eee);
+}
+
+.button:active {
+    background: linear-gradient(to bottom, #ddd, #eee);
+}
+
+.button--primary {
+    border: 1px solid #111;
+    background: linear-gradient(to bottom, #16f, #05e);
+    color: #fff;
+}
+
+.button--primary:hover {
+    background: linear-gradient(to bottom, #27f, #16f);
+}
+
+.button--primary:active {
+    background: linear-gradient(to bottom, #05e, #16f);
+}
+
+.button--big {
+    padding: 1.25em 3em;
+}
