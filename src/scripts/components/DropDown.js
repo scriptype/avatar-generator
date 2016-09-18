@@ -1,4 +1,5 @@
 import React from 'react'
+import Button from '../modules/Button'
 
 export default React.createClass({
   propTypes: {
@@ -113,14 +114,13 @@ export default React.createClass({
     return (
       <div className={cx()} ref='container'>
 
-        <button
-          type="button"
+        <Button
           className={cx('__handle') + ` ${isContentVisible ? cx('__handle--active') : ''}`}
           onClick={this.toggleContent}>
           { !isContentVisible ?
             (title1 || 'Click to expand menu') :
             (title2 || 'Close menu') }
-        </button>
+        </Button>
 
         <div className={cx('__content') + contentModifiers + (!isContentVisible ? ' hidden' : '')}>
           <ul className={cx('__list')}>

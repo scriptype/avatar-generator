@@ -13,6 +13,7 @@
 @import "./atoms/ColorSet.css";
 @import "./atoms/Input.css";
 @import "./atoms/RemoveIcon.css";
+@import "./atoms/Button.css";
 
 /*
  * Molecules */

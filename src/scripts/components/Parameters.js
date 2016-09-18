@@ -4,6 +4,7 @@ import DropDown from './DropDown'
 import Input from '../modules/Input'
 import ColorSet from '../modules/ColorSet'
 import RemoveIcon from '../modules/RemoveIcon'
+import Button from '../modules/Button'
 
 export default React.createClass({
   propTypes: {
@@ -94,12 +95,12 @@ export default React.createClass({
 
     var colorListDecorator = () => {
       return (
-          <button
-            type="button"
+          <Button
             className='add-color-row'
+            isPrimary={true}
             onClick={this.onAddColorSet}>
             Add new colorset
-          </button>
+          </Button>
       )
     }
 
