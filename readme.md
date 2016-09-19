@@ -1,7 +1,8 @@
 # Avatar Generator
 
 `dist` folder is all static, that is, index.html inside it can be opened directly.
-It's production-ready, so it can also be served from a server as static-files directory.
+`dist` can also be served from a server as static-files directory. It's meant to
+be production-ready, even.
 
 
 ## Usage Notes
