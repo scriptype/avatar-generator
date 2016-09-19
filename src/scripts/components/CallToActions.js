@@ -25,10 +25,16 @@ export default React.createClass({
     this.context.dispatcher.emitEvent('download-all')
   },
 
+  zeroPad(total, x) {
+    var [zeroCount, result] = [(''+total).length - 1 - ((''+x).length - 1), '']
+    while (zeroCount-- > 0) result += '0'
+    return result + x
+  },
+
   onDataUrlReady(dataUrl) {
     var { width, height, quantity } = this.props.parameters
     this.files.push({
-      name: width + 'x' + height + '-' + this.files.length + '.png',
+      name: width + 'x' + height + '-' + this.zeroPad(quantity, this.files.length) + '.png',
       dataUrl: dataUrl.replace('data:image/png;base64,', '')
     })
 
