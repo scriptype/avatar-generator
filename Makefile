@@ -1,5 +1,5 @@
 BIN = ./node_modules/.bin
-DIST = ./dist
+DIST = ./docs
 SRC = ./src
 
 HTML_INPUT = $(SRC)/index.html
@@ -125,4 +125,3 @@ replace_path:
 	  }) \
 	" > $(HTML_OUTPUT)
 	@rm $(DIST)/tmp.index.hbs.js
-
